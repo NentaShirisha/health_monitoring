@@ -1,0 +1,249 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contact - Live Health Monitoring System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="{% static 'default.css' %}" rel="stylesheet" type="text/css" />
+  <style>
+    :root {
+      --primary: #007BFF;
+      --accent: #00b894;
+      --text-dark: #2d3436;
+      --text-light: #ffffff;
+      --glass: rgba(255, 255, 255, 0.85);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-x: hidden;
+    }
+
+    body {
+      background: url("https://www.avnet.com/wcm/connect/189a2f42-25b0-46aa-9119-0bd6d5faa0a4/aac-sep-s-heartbeat-rate-1.jpg?MOD=AJPERES&CACHEID=ROOTWORKSPACE-189a2f42-25b0-46aa-9119-0bd6d5faa0a4-nLEIERw") no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .overlay {
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    nav {
+      background-color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .nav-title {
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 500;
+      padding: 10px 18px;
+      border-radius: 8px;
+      transition: 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 20px 0;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: var(--primary);
+    }
+
+    .content {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      max-width: 900px;
+      width: 100%;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      animation: fadeInUp 1s ease;
+    }
+
+    .card h2 {
+      color: var(--accent);
+      margin-top: 30px;
+      margin-bottom: 10px;
+      border-left: 5px solid var(--primary);
+      padding-left: 10px;
+      font-size: 22px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 16px;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tr:hover {
+      background-color: #eef5ff;
+    }
+
+    p.note {
+      text-align: center;
+      color: #555;
+      margin-top: 30px;
+    }
+
+    p.note a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 13px;
+      color: #777;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        padding: 30px 20px;
+      }
+
+      header h1 {
+        font-size: 2rem;
+      }
+
+      table {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="overlay">
+
+  <!-- Navbar -->
+  <nav>
+    <div class="nav-title">Live Health Monitoring System</div>
+    <div class="nav-links">
+      <a href="{% url 'index' %}">Home</a>
+      <a href="{% url 'UserLogin' %}">User Login</a>
+      <a href="{% url 'Register' %}">Register</a>
+      <a href="{% url 'Contact' %}">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header>
+    <h1>Emergency & Healthcare Contacts</h1>
+  </header>
+
+  <!-- Info Card -->
+  <div class="content">
+    <div class="card">
+
+      <h2>🆘 Emergency Services</h2>
+      <table>
+        <tr><th>Service</th><th>Contact Number</th></tr>
+        <tr><td>Ambulance</td><td>108</td></tr>
+        <tr><td>Police</td><td>100</td></tr>
+        <tr><td>Fire</td><td>101</td></tr>
+      </table>
+
+      <h2>🏥 Hospitals in Telangana</h2>
+      <table>
+        <tr><th>Hospital</th><th>City</th><th>Contact</th></tr>
+        <tr><td>Osmania General Hospital</td><td>Hyderabad</td><td>040‑24651125</td></tr>
+        <tr><td>Yashoda Hospitals</td><td>Secunderabad</td><td>040‑27153333</td></tr>
+        <tr><td>KIMS Hospital</td><td>Hyderabad</td><td>040‑23543030</td></tr>
+      </table>
+
+      <h2>👩‍⚕️ Health Helplines & Doctors</h2>
+      <table>
+        <tr><th>Service</th><th>Contact Number</th></tr>
+        <tr><td>Health Helpline (Telangana)</td><td>104</td></tr>
+        <tr><td>Counseling Helpline (KIRTADS)</td><td>104</td></tr>
+        <tr><td>Geriatric Care Helpline</td><td>040‑66770676</td></tr>
+      </table>
+
+      <p class="note">
+        For more detailed information, visit the <a href="https://health.telangana.gov.in/" target="_blank">Telangana Government Health</a> portal.
+      </p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    &copy; {{ now|date:"Y" }} Copyrights || 2025. ©Copyrights || 2025
+  </footer>
+</div>
+</body>
+</html>

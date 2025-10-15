@@ -1,0 +1,327 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Register - Live Health Monitoring System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="{% static 'default.css' %}" rel="stylesheet" type="text/css" />
+  <style>
+    :root {
+      --primary: #007BFF;
+      --accent: #00b894;
+      --text-dark: #2d3436;
+      --text-light: #ffffff;
+      --glass: rgba(255, 255, 255, 0.85);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-x: hidden;
+    }
+
+    body {
+      background: url("https://www.avnet.com/wcm/connect/189a2f42-25b0-46aa-9119-0bd6d5faa0a4/aac-sep-s-heartbeat-rate-1.jpg?MOD=AJPERES&CACHEID=ROOTWORKSPACE-189a2f42-25b0-46aa-9119-0bd6d5faa0a4-nLEIERw") no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .overlay {
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    nav {
+      background-color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .nav-title {
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 500;
+      padding: 10px 18px;
+      border-radius: 8px;
+      transition: 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 20px 0;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: var(--primary);
+    }
+
+    .register-container {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 50px 20px;
+    }
+
+    .register-box {
+      background: white;
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      max-width: 550px;
+      width: 100%;
+      animation: fadeInUp 1s ease;
+    }
+
+    .register-box h2 {
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: 25px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #333;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    .register-box input[type="submit"] {
+      width: 100%;
+      background-color: var(--primary);
+      color: white;
+      padding: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .register-box input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+
+    .nav {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .nav a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .status-message {
+      background-color: #e8f7ff;
+      color: #007BFF;
+      padding: 12px;
+      border-left: 4px solid #007BFF;
+      margin-bottom: 20px;
+      border-radius: 6px;
+      text-align: center;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 13px;
+      color: #777;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .register-box {
+        padding: 30px 20px;
+      }
+
+      header h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+
+  <script>
+    function validateEmail(value) {
+      return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value);
+    }
+
+    function validate(formObj) {
+      if (formObj.t1.value.trim() === "") {
+        alert("Please Enter Username");
+        formObj.t1.focus();
+        return false;
+      }
+
+      if (formObj.t2.value.trim() === "") {
+        alert("Please Enter Password");
+        formObj.t2.focus();
+        return false;
+      }
+
+      if (formObj.t3.value.trim() === "") {
+        alert("Please Enter Contact No");
+        formObj.t3.focus();
+        return false;
+      }
+
+      if (!formObj.t3.value.match(/^\d{10}$/)) {
+        alert("Contact No must be 10 digits");
+        formObj.t3.focus();
+        return false;
+      }
+
+      if (formObj.t4.value.trim() === "") {
+        alert("Please Enter Email ID");
+        formObj.t4.focus();
+        return false;
+      }
+
+      if (!validateEmail(formObj.t4.value)) {
+        alert("Please enter a valid Email ID");
+        formObj.t4.focus();
+        return false;
+      }
+
+      if (formObj.t5.value.trim() === "") {
+        alert("Please Enter Address");
+        formObj.t5.focus();
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+</head>
+<body>
+  <div class="overlay">
+
+    <!-- Navbar -->
+    <nav>
+      <div class="nav-title">Live Health Monitoring System</div>
+      <div class="nav-links">
+        <a href="{% url 'index' %}">Home</a>
+        <a href="{% url 'UserLogin' %}">User Login</a>
+        <a href="{% url 'Register' %}">Register</a>
+        <a href="{% url 'Contact' %}">Contact</a>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header>
+      <h1>Register New User</h1>
+    </header>
+
+    <!-- Registration Form -->
+    <div class="register-container">
+      <div class="register-box">
+        <h2>Create an Account</h2>
+
+        {% if data %}
+          <div class="status-message">{{ data|safe }}</div>
+        {% endif %}
+
+        <form name="f1" method="post" action="{% url 'RegisterAction' %}" onsubmit="return validate(this)">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="t1">Username</label>
+            <input type="text" name="t1" id="t1" placeholder="Enter your username">
+          </div>
+
+          <div class="form-group">
+            <label for="t2">Password</label>
+            <input type="password" name="t2" id="t2" placeholder="Create a strong password">
+          </div>
+
+          <div class="form-group">
+            <label for="t3">Contact Number</label>
+            <input type="text" name="t3" id="t3" placeholder="10-digit mobile number">
+          </div>
+
+          <div class="form-group">
+            <label for="t4">Email ID</label>
+            <input type="text" name="t4" id="t4" placeholder="example@domain.com">
+          </div>
+
+          <div class="form-group">
+            <label for="t5">Address</label>
+            <textarea name="t5" id="t5" rows="3" placeholder="Enter your address"></textarea>
+          </div>
+
+          <input type="submit" value="Register">
+        </form>
+
+        <div class="nav">
+          Already have an account?
+          <a href="{% url 'UserLogin' %}">Login</a>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      &copy; {{ now|date:"Y" }} Copyrights || 2025
+    </footer>
+  </div>
+</body>
+</html>

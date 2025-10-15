@@ -1,0 +1,204 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Live Health Monitoring System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="{% static 'default.css' %}" rel="stylesheet" type="text/css" />
+    <style>
+        :root {
+            --primary: #007BFF;
+            --accent: #00b894;
+            --text-dark: #2d3436;
+            --text-light: #ffffff;
+            --glass: rgba(255, 255, 255, 0.85);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        body {
+            background: url("https://www.avnet.com/wcm/connect/189a2f42-25b0-46aa-9119-0bd6d5faa0a4/aac-sep-s-heartbeat-rate-1.jpg?MOD=AJPERES&CACHEID=ROOTWORKSPACE-189a2f42-25b0-46aa-9119-0bd6d5faa0a4-nLEIERw") no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .overlay {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navbar */
+        nav {
+            background-color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .nav-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            padding: 10px 18px;
+            border-radius: 8px;
+            transition: 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 20px 20px 20px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.1);
+        }
+
+        .content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.92);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            max-width: 850px;
+            text-align: center;
+            animation: fadeInUp 0.9s ease-out;
+        }
+
+        .card h2 {
+            color: var(--accent);
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+
+        .card p {
+            font-size: 18px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        footer {
+            background: rgba(255, 255, 255, 0.95);
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            color: #888;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .card {
+                padding: 25px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                align-items: flex-end;
+            }
+
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay">
+
+        <!-- Navbar -->
+        <nav>
+            <div class="nav-title">Live Health Monitoring System</div>
+            <div class="nav-links">
+                <a href="{% url 'index' %}">Home</a>
+                <a href="{% url 'UserLogin' %}">User Login</a>
+                <a href="{% url 'Register' %}">Register</a>
+                <a href="{% url 'Contact' %}">Contact</a>
+            </div>
+        </nav>
+
+        <!-- Header -->
+        <header>
+            <h1>Live Health Monitoring System</h1>
+        </header>
+
+        <!-- Main Content -->
+        <div class="content">
+            <div class="card">
+                <h2>Track. Monitor. Empower.</h2>
+                <p>
+                    Our real-time Live Health Monitoring System platform transforms patient care with continuous insights, 
+                    early detection alerts, and a seamless interface for both patients and professionals. 
+                    Stay ahead with proactive healthcare — powered by innovation.
+                </p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            &copy; {{ now|date:"Y" }} Copyrights || 2025
+        </footer>
+    </div>
+</body>
+</html>
